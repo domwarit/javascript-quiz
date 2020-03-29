@@ -110,39 +110,46 @@ startBtn.addEventListener('click', startQuiz);
 
 
 
-// var secondsLeft = 10;
-
-// function setTime() {
-//   var timerInterval = setInterval(function () {
-//     secondsLeft--;
-//     // timeEl.textContent = secondsLeft + " seconds left till colorsplosion.";
-
-//     if (secondsLeft === 0) {
-//       clearInterval(timerInterval);
-     
-//     }
-
-//   }, 1000);
-// }
+// timer
 
 
+function getFormattedSeconds() {
+  var secondsLeft = (totalSeconds - secondsElapsed) %60;
 
-// setTime();
+  var getFormattedSeconds;
+  if (secondsLeft < 10){
+    formattedSeconds = 0 + secondsLeft
+  }
+  else {
+    formattedSeconds = secondsLeft;
+  }
 
-// Timer Attempt 
-// function questionClick() {
-//   var timerInterval = setInterval(function() {
-//     secondsAdded--;
-//     timeEl.textContent = secondsAdded + "Correct!";
-//     if(secondsAdded === 30) {
-//       addEventListener=correct.push(questions[Q]);
-//       console.log(correct);
-//       clearInterval(timerInterval);
-//       sendMessage("Add Time");
-//     } else {
-//       (secondsSubtracted === -30)
-//       addEventListener=incorrect.push(questions[Q]);
-//       console.log(incorrect);
-//       timeEl.textContent = secondSubtracted + "Incorrect!";
-//       clearInterval(timerInterval);
-//       sendMessage("Subtract Time");
+  return formattedSeconds;
+
+
+}
+
+function printTime () {
+
+  minuteDisplay.innerHTML = getFormattedMinutes();
+  secondsDisplay.textContent = getFormattedSeconds();
+}
+
+function startTime() {
+  // question();
+  console.log("this is the timer")
+  printTime();
+  start.setAttribute("style", "background-color : black; border-color:white;")
+
+  if(totalSeconds >0){
+    interval = setInterval(function (){
+      secondsElapsed++;
+      printTime();
+    }, 2000)
+  } 
+  else {
+    alert("GAME ENDED! YOU ARE OUT OF TIME!")
+  }
+
+}
+startBtn.addEventListener("click", startTime);
