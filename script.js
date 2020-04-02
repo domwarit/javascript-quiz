@@ -44,15 +44,23 @@ var Q = 0;
 var correct = [];
 var time = 1000;
 var currentQuestion;
-
+var quizResults = (correct = 0); 
 
 var startBtn = document.getElementById('start-btn');
 var startScreenEl = document.getElementById('start-screen');
 var questionTitleEl = document.getElementById('question-title');
 var questionCardEl = document.getElementById('question-card');
 var choicesEl = document.getElementById('choices');
-var timeEl = document.getElementById('timer');
 var endScreenEl = document.getElementById('end-screen');
+
+//Timer Elements
+var timeEl = document.getElementById('timer');
+var totalSeconds = 240 
+var theTime = questions.length * 15;
+
+//create a timerId variable = that will be blank 
+var timerID;
+
 
 function buildQuestionCard() {
   currentQuestion = questions[Q];
@@ -99,11 +107,24 @@ function endQuiz(){
 
   questionCardEl.setAttribute('class', "hide");
   endScreenEl.removeAttribute('class')
+  {function quizResults(){ 
+
+  }
+  }
 }
+
+
+
 
 function startQuiz() {
   startScreenEl.setAttribute('class', 'hide');
   questionCardEl.removeAttribute('class');
+  //the blank timerID varable provide it the value of setInterval(tickfunction, 1000)
+  timerID = setInterval(countdown, 1000);
+
+  //show starting time using textContent 
+  timeEl.textContent = theTime;
+
   buildQuestionCard();
 }
 startBtn.addEventListener('click', startQuiz);
@@ -112,44 +133,60 @@ startBtn.addEventListener('click', startQuiz);
 
 // timer
 
+function countdown(){
+  //var timeEL = setInterval(function()
+  
+    totalSeconds--;
+    timeEl.textContent= totalSeconds + "  :time remaining";
 
-function getFormattedSeconds() {
-  var secondsLeft = (totalSeconds - secondsElapsed) %60;
+    if (totalSeconds <= 0){
+      console.log("timer function has be touched")
+      // clearInterval
+    }
+  
+    
+};
 
-  var getFormattedSeconds;
-  if (secondsLeft < 10){
-    formattedSeconds = 0 + secondsLeft
-  }
-  else {
-    formattedSeconds = secondsLeft;
-  }
-
-  return formattedSeconds;
-
-
-}
-
-function printTime () {
-
-  minuteDisplay.innerHTML = getFormattedMinutes();
-  secondsDisplay.textContent = getFormattedSeconds();
-}
-
-function startTime() {
-  // question();
-  console.log("this is the timer")
-  printTime();
-  start.setAttribute("style", "background-color : black; border-color:white;")
-
-  if(totalSeconds >0){
-    interval = setInterval(function (){
-      secondsElapsed++;
-      printTime();
-    }, 2000)
-  } 
-  else {
-    alert("GAME ENDED! YOU ARE OUT OF TIME!")
-  }
+function sendMessage(){
+  timeEl.textContent = " ";
+  
 
 }
-startBtn.addEventListener("click", startTime);
+
+// To save the scores()
+
+  //get value of input box
+
+  //make sure value wasn't empty 
+
+  // create a variable get saved scores from the localsotrage, if there are not any previously saved - clear it 
+
+  //format new score object for current user 
+
+  //save to localstorage
+
+  //redirect to next page 
+
+
+
+
+//Create a seperate js file that holds the highscoe functions
+//have the highscore sector in the html be hidden (till the end of the game ) : hint: eventlistener
+//
+
+//The function needs (but not limited to)
+
+  //create a variable that will caputure the scoresfrom your localstorage
+
+  //sort throughthe score byt score property (descending order)
+
+  //Create a forEach that will grab the elements from the html 
+  //create li tag for each high score
+  //display on page
+
+
+//Create a function that clears out the highscore
+//using the localstorage to remove the highscore
+
+
+//run the function 
