@@ -55,7 +55,7 @@ var endScreenEl = document.getElementById('end-screen');
 
 //Timer Elements
 var timeEl = document.getElementById('timer');
-var totalSeconds = 240 
+var totalSeconds = 30 
 var theTime = questions.length * 15;
 
 //create a timerId variable = that will be blank 
